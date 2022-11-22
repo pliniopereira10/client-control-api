@@ -1,11 +1,13 @@
 package edu.pliniopereira10.clientcontrol.dtos;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 import edu.pliniopereira10.clientcontrol.models.ClientModel;
 
-public class ClientDto {
-	
+public class ClientDto implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
 	private String name;
 	private String cpf;
