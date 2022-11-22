@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,20 +44,27 @@ public class ClientService {
 
 		return new ClientDto(clientModel);
 	}
-	
+
 	@Transactional
 	public ClientDto update(Long id, ClientDto clientDto) {
-		ClientModel clientModel = clientRepository.getById(id);
-		copyDtoToModel(clientDto, clientModel);
+		try {
+			ClientModel clientModel = clientRepository.getById(id);
+			copyDtoToModel(clientDto, clientModel);
+			
+			return new ClientDto(clientModel);
+			
+		} catch (EntityNotFoundException e) {
+			throw new ServiceNotFoundExpetion("Id " + id + " not found");
+		}
 
-		return new ClientDto(clientModel);
+
 	}
-	
+
 	public void delete(Long id) {
 		clientRepository.deleteById(id);
-		
+
 	}
-	
+
 	// Helper Method
 	private void copyDtoToModel(ClientDto clientDto, ClientModel clientModel) {
 		clientModel.setName(clientDto.getName());
