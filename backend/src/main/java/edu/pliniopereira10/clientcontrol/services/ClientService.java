@@ -1,6 +1,7 @@
 package edu.pliniopereira10.clientcontrol.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,15 @@ public class ClientService {
 
 		return clientModels.stream().map(x -> new ClientDto(x)).collect(Collectors.toList());
 	}
+	
+	@Transactional(readOnly = true)
+	public ClientDto finById(Long id) {
+		Optional<ClientModel> obj = clientRepository.findById(id);
+		ClientModel clientModel = obj.get();
+		
+		return new ClientDto(clientModel);
+	}
+	
+	
 
 }
