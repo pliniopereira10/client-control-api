@@ -37,12 +37,7 @@ public class ClientService {
 	@Transactional
 	public ClientDto insert(ClientDto clientDto) {
 		ClientModel clientModel = new ClientModel();
-		clientModel.setName(clientDto.getName());
-		clientModel.setCpf(clientDto.getCpf());
-		clientModel.setIncome(clientDto.getIncome());
-		clientModel.setBirthDate(clientDto.getBirthDate());
-		clientModel.setChildren(clientDto.getChildren());
-
+		copyDtoToModel(clientDto, clientModel);
 		clientModel = clientRepository.save(clientModel);
 
 		return new ClientDto(clientModel);
@@ -51,13 +46,7 @@ public class ClientService {
 	@Transactional
 	public ClientDto update(Long id, ClientDto clientDto) {
 		ClientModel clientModel = clientRepository.getById(id);
-		clientModel.setName(clientDto.getName());
-		clientModel.setCpf(clientDto.getCpf());
-		clientModel.setIncome(clientDto.getIncome());
-		clientModel.setBirthDate(clientDto.getBirthDate());
-		clientModel.setChildren(clientDto.getChildren());
-
-		clientModel = clientRepository.save(clientModel);
+		copyDtoToModel(clientDto, clientModel);
 
 		return new ClientDto(clientModel);
 	}
@@ -65,6 +54,15 @@ public class ClientService {
 	public void delete(Long id) {
 		clientRepository.deleteById(id);
 		
+	}
+	
+	// Helper Method
+	private void copyDtoToModel(ClientDto clientDto, ClientModel clientModel) {
+		clientModel.setName(clientDto.getName());
+		clientModel.setCpf(clientDto.getCpf());
+		clientModel.setIncome(clientDto.getIncome());
+		clientModel.setBirthDate(clientDto.getBirthDate());
+		clientModel.setChildren(clientDto.getChildren());
 	}
 
 }
