@@ -1,0 +1,10 @@
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Prudente de Morais', '15111894898', TIMESTAMP WITH TIME ZONE '1841-10-04T20:50:07.12345Z', 2300.0, 9 );
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Campos Sales', '15111898902', TIMESTAMP WITH TIME ZONE '1841-02-15T20:50:07.12345Z', 3020.0, 9 );
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Rodrigues Alves', '15111902906', TIMESTAMP WITH TIME ZONE '1848-07-07T20:50:07.12345Z', 3600.0, 12 );
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Afonso Pena', '15111906909', TIMESTAMP WITH TIME ZONE '1847-11-30T20:50:07.12345Z', 4000.0, 12 );
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Nilo Peçanha', '14061909910', TIMESTAMP WITH TIME ZONE '1867-10-02T20:50:07.12345Z', 4800.0, 3 );
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Hermes da Fonseca', '15101910914', TIMESTAMP WITH TIME ZONE '1855-05-12T20:50:07.12345Z', 5200.0, 0 );
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Venceslau Brás', '15111914918', TIMESTAMP WITH TIME ZONE '1868-02-26T20:50:07.12345Z', 6000.0, 7 );
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Delfim Moreira', '15111918919', TIMESTAMP WITH TIME ZONE '1868-11-07T20:50:07.12345Z', 7000.0, 0 );
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Epitácio Pessoa', '28071919922', TIMESTAMP WITH TIME ZONE '1865-05-23T20:50:07.12345Z', 7600.0, 3 );
+INSERT INTO tb_client (name, cpf, birth_Date, income, children) VALUES ('Artur Bernardes', '15111922926', TIMESTAMP WITH TIME ZONE '1875-08-08T20:50:07.12345Z', 8300.0, 8 );
