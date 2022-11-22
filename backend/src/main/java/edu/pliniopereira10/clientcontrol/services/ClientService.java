@@ -7,12 +7,15 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.pliniopereira10.clientcontrol.dtos.ClientDto;
 import edu.pliniopereira10.clientcontrol.models.ClientModel;
 import edu.pliniopereira10.clientcontrol.repositories.ClientRepository;
+import edu.pliniopereira10.clientcontrol.services.exceptions.ServiceDataBaseException;
 import edu.pliniopereira10.clientcontrol.services.exceptions.ServiceNotFoundExpetion;
 
 @Service
@@ -50,18 +53,23 @@ public class ClientService {
 		try {
 			ClientModel clientModel = clientRepository.getById(id);
 			copyDtoToModel(clientDto, clientModel);
-			
-			return new ClientDto(clientModel);
-			
-		} catch (EntityNotFoundException e) {
-			throw new ServiceNotFoundExpetion("Id " + id + " not found");
-		}
 
+			return new ClientDto(clientModel);
+
+		} catch (EntityNotFoundException e) {
+			throw new ServiceNotFoundExpetion("Id " + id + " não encontrado");
+		}
 
 	}
 
 	public void delete(Long id) {
-		clientRepository.deleteById(id);
+		try {
+			clientRepository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ServiceNotFoundExpetion("Id " + id + " não encontrado");
+		} catch (DataIntegrityViolationException e) {
+			throw new ServiceDataBaseException("Violação de integridade");
+		}
 
 	}
 
