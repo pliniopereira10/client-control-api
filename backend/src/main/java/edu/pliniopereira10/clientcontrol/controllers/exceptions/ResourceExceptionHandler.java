@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import edu.pliniopereira10.clientcontrol.services.exceptions.ServiceDataBaseException;
-import edu.pliniopereira10.clientcontrol.services.exceptions.ServiceNotFoundExpetion;
+import edu.pliniopereira10.clientcontrol.services.exceptions.ServiceNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-	@ExceptionHandler(ServiceNotFoundExpetion.class)
-	public ResponseEntity<StandardError> entityNotFound(ServiceNotFoundExpetion e,
+	@ExceptionHandler(ServiceNotFoundException.class)
+	public ResponseEntity<StandardError> entityNotFound(ServiceNotFoundException e,
 			HttpServletRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		StandardError error = new StandardError();

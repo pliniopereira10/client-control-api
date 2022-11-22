@@ -16,7 +16,7 @@ import edu.pliniopereira10.clientcontrol.dtos.ClientDto;
 import edu.pliniopereira10.clientcontrol.models.ClientModel;
 import edu.pliniopereira10.clientcontrol.repositories.ClientRepository;
 import edu.pliniopereira10.clientcontrol.services.exceptions.ServiceDataBaseException;
-import edu.pliniopereira10.clientcontrol.services.exceptions.ServiceNotFoundExpetion;
+import edu.pliniopereira10.clientcontrol.services.exceptions.ServiceNotFoundException;
 
 @Service
 public class ClientService {
@@ -34,7 +34,7 @@ public class ClientService {
 	@Transactional(readOnly = true)
 	public ClientDto finById(Long id) {
 		Optional<ClientModel> obj = clientRepository.findById(id);
-		ClientModel clientModel = obj.orElseThrow(() -> new ServiceNotFoundExpetion("Id não encontrado"));
+		ClientModel clientModel = obj.orElseThrow(() -> new ServiceNotFoundException("Id não encontrado"));
 
 		return new ClientDto(clientModel);
 	}
@@ -57,7 +57,7 @@ public class ClientService {
 			return new ClientDto(clientModel);
 
 		} catch (EntityNotFoundException e) {
-			throw new ServiceNotFoundExpetion("Id " + id + " não encontrado");
+			throw new ServiceNotFoundException("Id " + id + " não encontrado");
 		}
 
 	}
@@ -66,7 +66,7 @@ public class ClientService {
 		try {
 			clientRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			throw new ServiceNotFoundExpetion("Id " + id + " não encontrado");
+			throw new ServiceNotFoundException("Id " + id + " não encontrado");
 		} catch (DataIntegrityViolationException e) {
 			throw new ServiceDataBaseException("Violação de integridade");
 		}
