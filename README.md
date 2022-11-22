@@ -4,7 +4,7 @@
 
 ## 💎 Modelo UML da entidade
 
-![uml-client-entity](/media/pliniopsp/Compartilhamento/CursosDevSuperior/BootCamp_Spring_3.0/imagens/imagens-anotacoes/uml-client-entity.png)
+![uml-client-entity](https://github.com/pliniopereira10/images/blob/1a09dc69093421ed15434417f58412512e2fee86/imagens-uml/uml-client-entity.png)
 
 ## 👣 Passo-a-Passo
 
