@@ -61,5 +61,10 @@ public class ClientService {
 
 		return new ClientDto(clientModel);
 	}
+	
+	public void delete(Long id) {
+		clientRepository.deleteById(id);
+		
+	}
 
 }
