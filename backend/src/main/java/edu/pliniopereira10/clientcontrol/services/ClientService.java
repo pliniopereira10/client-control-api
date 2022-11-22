@@ -1,6 +1,5 @@
 package edu.pliniopereira10.clientcontrol.services;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -9,6 +8,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,10 +26,10 @@ public class ClientService {
 	ClientRepository clientRepository;
 
 	@Transactional(readOnly = true)
-	public List<ClientDto> findAll() {
-		List<ClientModel> clientModels = clientRepository.findAll();
+	public Page<ClientDto> findAllPaged(PageRequest pageRequest) {
+		Page<ClientModel> clientModels = clientRepository.findAll(pageRequest);
 
-		return clientModels.stream().map(x -> new ClientDto(x)).collect(Collectors.toList());
+		return clientModels.map(x -> new ClientDto(x));
 	}
 
 	@Transactional(readOnly = true)
