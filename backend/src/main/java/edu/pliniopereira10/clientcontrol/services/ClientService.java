@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.pliniopereira10.clientcontrol.dtos.ClientDto;
 import edu.pliniopereira10.clientcontrol.models.ClientModel;
 import edu.pliniopereira10.clientcontrol.repositories.ClientRepository;
+import edu.pliniopereira10.clientcontrol.services.exceptions.ServiceNotFoundExpetion;
 
 @Service
 public class ClientService {
@@ -24,15 +25,13 @@ public class ClientService {
 
 		return clientModels.stream().map(x -> new ClientDto(x)).collect(Collectors.toList());
 	}
-	
+
 	@Transactional(readOnly = true)
 	public ClientDto finById(Long id) {
 		Optional<ClientModel> obj = clientRepository.findById(id);
-		ClientModel clientModel = obj.get();
-		
+		ClientModel clientModel = obj.orElseThrow(() -> new ServiceNotFoundExpetion("Id não encontrado"));
+
 		return new ClientDto(clientModel);
 	}
-	
-	
 
 }
