@@ -47,5 +47,19 @@ public class ClientService {
 
 		return new ClientDto(clientModel);
 	}
+	
+	@Transactional
+	public ClientDto update(Long id, ClientDto clientDto) {
+		ClientModel clientModel = clientRepository.getById(id);
+		clientModel.setName(clientDto.getName());
+		clientModel.setCpf(clientDto.getCpf());
+		clientModel.setIncome(clientDto.getIncome());
+		clientModel.setBirthDate(clientDto.getBirthDate());
+		clientModel.setChildren(clientDto.getChildren());
+
+		clientModel = clientRepository.save(clientModel);
+
+		return new ClientDto(clientModel);
+	}
 
 }
