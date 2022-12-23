@@ -4,7 +4,7 @@
 
 ## 💎 Modelo UML da entidade
 
-![uml-client-entity](https://github.com/pliniopereira10/images/blob/1a09dc69093421ed15434417f58412512e2fee86/imagens-uml/uml-client-entity.png)
+![uml-client-entity](https://github.com/pliniopereira10/images/blob/9eec9634dfdff982ee3b948327e34f7cb59a5f6a/diagram-images/uml-client-entity.png)
 
 ## 👣 Passo-a-Passo
 
